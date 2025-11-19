@@ -1,8 +1,6 @@
-# Course Enrollment App
+# Course Enrollment App – SchoolTry assessment 
 
 Welcome! This project is a **full-stack course enrollment application** that helps manage students, courses, and enrollments efficiently. It has a **Python backend (FastAPI + SQLAlchemy + SQLite)**, a **Vue 3 frontend**, and an optional GenAI feature for generating study tips.
-
-Whether you're a beginner looking to learn full-stack development or an advanced developer wanting a clean, production-ready example, this guide will help you get the project running end-to-end.
 
 ---
 
@@ -41,14 +39,8 @@ Everything is designed to **just work** after setup.
 ## Project Structure
 
 ```
-- All worked dependencies execute perfectly
-
-- api/
-  ├── __pycache__/
-  │   ├── database.cpython-313.pyc
-  │   ├── main.cpython-313.pyc
-  │   ├── models.cpython-313.pyc
-  │   └── schemas.cpython-313.pyc
+course-enrollment-app/
+  api/
   ├── database.py
   ├── main.py
   ├── models.py
@@ -68,11 +60,8 @@ Everything is designed to **just work** after setup.
   ├── public/
   │   └── vite.svg
   ├── src/
-  │   ├── App.vue
   │   ├── assets/
-  │   │   └── vue.svg
-  │   ├── components/
-  │   │   └── HelloWorld.vue
+  │   │   └── vue.svg   
   │   ├── main.js
   │   ├── style.css
   │   └── views/
@@ -81,7 +70,6 @@ Everything is designed to **just work** after setup.
   │       ├── StudentRegister.vue
   │       └── StudyTips.vue
   └── vite.config.js
-- repos.code-workspace
 - requirements.txt
 ```
 
@@ -151,10 +139,10 @@ npm run dev
 * The frontend will run at `http://localhost:3000`
 * Axios calls will go to `http://localhost:8000`
 
-### 4. Using Groq GenAI (Optional)
+### 4. Using Groq GenAI-powered study tips
 
 1. Make sure your `.env` has `GROQ_API_KEY`
-2. Use the `/genai/study-tips` endpoint. Example payload:
+2. Use the `/genai/study-tips` endpoint. 
 
 ```json
 {
@@ -175,16 +163,10 @@ The endpoint returns:
 }
 ```
 
-### 5. Optional Tailwind CSS
+### 5. Pain CSS only (no Tailwind)
 
-If desired:
-
-```bash
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-```
-
-Configure `tailwind.config.js` and include `@tailwind` in your CSS. Otherwise, plain CSS works perfectly.
+Everything lives in App.vue 
+Uses alert() for messages – fast and reliable.
 
 ---
 
@@ -241,4 +223,4 @@ If you want to contribute:
 
 ## License
 
-This project is under the **MIT License** — see `LICENSE` file.
+I licensed the assessment under the **MIT License** — see `LICENSE` file.
