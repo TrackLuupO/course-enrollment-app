@@ -40,37 +40,37 @@ Everything is designed to **just work** after setup.
 
 ```
 course-enrollment-app/
-  api/
-  ├── database.py
-  ├── main.py
-  ├── models.py
-  ├── schemas.py
-  └── tests/
-      ├── init.py
-      └── test_main.py
-- enrollment.db
-- frontend/
-  ├── .gitignore
-  ├── .vscode/
-  │   └── extensions.json
-  ├── README.md
-  ├── index.html
-  ├── package-lock.json
-  ├── package.json
-  ├── public/
-  │   └── vite.svg
-  ├── src/
-  │   ├── assets/
-  │   │   └── vue.svg   
-  │   ├── main.js
-  │   ├── style.css
-  │   └── views/
-  │       ├── CourseCreate.vue
-  │       ├── Enroll.vue
-  │       ├── StudentRegister.vue
-  │       └── StudyTips.vue
-  └── vite.config.js
-- requirements.txt
+├── api/
+│    ├── database.py
+│    ├── main.py
+│    ├── models.py
+│    ├── schemas.py
+│    └── tests/
+│    │    ├── init.py
+│    │    └── test_main.py
+├── frontend/
+│    ├── .gitignore
+│    ├── .vscode/
+│    │   └── extensions.json
+│    ├── README.md
+│    ├── index.html
+│    ├── package-lock.json
+│    ├── package.json
+│    ├── public/
+│    │   └── vite.svg
+│    ├── src/
+│    │   ├── App.vue 
+│    │   ├── main.js
+│    │   ├── style.css
+│    │   └── views/
+│    │       ├── CourseCreate.vue
+│    │       ├── Enroll.vue
+│    │       ├── StudentRegister.vue
+│    │       └── StudyTips.vue
+│    └── vite.config.js
+├── enrollment.db
+├── requirements.txt
+├── README.md
 ```
 
 ---
