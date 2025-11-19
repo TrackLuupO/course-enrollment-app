@@ -70,7 +70,7 @@ course-enrollment-app/
 │    └── vite.config.js
 ├── enrollment.db
 ├── requirements.txt
-├── README.md
+└── README.md
 ```
 
 ---
