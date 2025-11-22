@@ -146,7 +146,7 @@ npm run dev
 
 ```json
 {
-  "course_title": "Mathematics 101",
+  "course_title": "Mobile App Development",
   "credit_units": 3
 }
 ```
