@@ -413,9 +413,9 @@ export default {
       selectedCourseForStudents: null,
       // Initial sample students (for enrollment dropdown)
       initialStudents: [
-        { id: 1, name: 'Lourre Student', email: 'lourre@student.com' },
-        { id: 2, name: 'Loornter Student', email: 'loornter@student.com' },
-        { id: 3, name: 'John Smith', email: 'john.smith@student.com' },
+        { id: 1, name: 'John Student', email: 'john@student.com' },
+        { id: 2, name: 'Phebe Student', email: 'phebe@student.com' },
+        { id: 3, name: 'Zoe Smith', email: 'zoe.smith@student.com' },
         { id: 4, name: 'Emily Johnson', email: 'emily.johnson@student.com' }
       ],
       courses: [
