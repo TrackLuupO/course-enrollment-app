@@ -49,24 +49,13 @@ course-enrollment-app/
 │    │    ├── init.py
 │    │    └── test_main.py
 ├── frontend/
-│    ├── .gitignore
-│    ├── .vscode/
-│    │   └── extensions.json
 │    ├── README.md
 │    ├── index.html
-│    ├── package-lock.json
 │    ├── package.json
-│    ├── public/
-│    │   └── vite.svg
 │    ├── src/
 │    │   ├── App.vue 
 │    │   ├── main.js
-│    │   ├── style.css
-│    │   └── views/
-│    │       ├── CourseCreate.vue
-│    │       ├── Enroll.vue
-│    │       ├── StudentRegister.vue
-│    │       └── StudyTips.vue
+│    │   └── style.css
 │    └── vite.config.js
 ├── enrollment.db
 ├── requirements.txt
