@@ -210,6 +210,8 @@ If you want to contribute:
 
 ---
 
-## License
+## 📄 License
+This project is licensed under the `MIT License` - see the LICENSE file for details.
 
-I licensed the assessment under the **MIT License** — see `LICENSE` file.
+--- 
+Built with ❤️ for academic institutions and educational technology
