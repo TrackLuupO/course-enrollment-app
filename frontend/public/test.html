@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backend Connection Test</title>
+</head>
+<body>
+    <h1>Backend Connection Test</h1>
+    <div id="results"></div>
+    
+    <script>
+        const endpoints = [
+            { url: 'http://localhost:8000/', name: 'Root' },
+            { url: 'http://localhost:8000/health', name: 'Health' },
+            { url: 'http://localhost:8000/courses/', name: 'Courses' },
+            { url: 'http://localhost:8000/students/', name: 'Students' },
+            { url: 'http://localhost:8000/stats/', name: 'Stats' }
+        ];
+
+        async function testEndpoints() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<h2>Testing...</h2>';
+
+            for (const endpoint of endpoints) {
+                const result = document.createElement('div');
+                result.innerHTML = `<strong>${endpoint.name} (${endpoint.url}):</strong> `;
+                
+                try {
+                    const response = await fetch(endpoint.url);
+                    if (response.ok) {
+                        const data = await response.json();
+                        result.innerHTML += `<span style="color: green;">✅ Success (${response.status})</span>`;
+                        result.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                    } else {
+                        result.innerHTML += `<span style="color: red;">❌ Failed (${response.status})</span>`;
+                    }
+                } catch (error) {
+                    result.innerHTML += `<span style="color: red;">❌ Error: ${error.message}</span>`;
+                }
+                
+                resultsDiv.appendChild(result);
+                resultsDiv.appendChild(document.createElement('hr'));
+            }
+        }
+
+        testEndpoints();
+    </script>
+</body>
+</html>
