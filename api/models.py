@@ -1,12 +1,15 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint
-from .database import Base
 from sqlalchemy.orm import relationship
+from database import Base  # Direct import
 
 class Student(Base):
     __tablename__ = "students"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False)
+    
+    # Relationships
+    enrollments = relationship("Enrollment", back_populates="student")
 
 class Course(Base):
     __tablename__ = "courses"
@@ -15,6 +18,9 @@ class Course(Base):
     code = Column(String, unique=True, nullable=False)
     credit_units = Column(Integer, nullable=False)
     description = Column(String)
+    
+    # Relationships
+    enrollments = relationship("Enrollment", back_populates="course")
 
 class Enrollment(Base):
     __tablename__ = "enrollments"
@@ -24,12 +30,6 @@ class Enrollment(Base):
     
     __table_args__ = (UniqueConstraint('student_id', 'course_id', name='unique_enrollment'),)
     
-    # Add inside Student class
-enrollments = relationship("Enrollment", back_populates="student")
-
-# Add inside Course class
-enrollments = relationship("Enrollment", back_populates="course")
-
-# Add inside Enrollment class
-student = relationship("Student", back_populates="enrollments")
-course = relationship("Course", back_populates="enrollments")
+    # Relationships
+    student = relationship("Student", back_populates="enrollments")
+    course = relationship("Course", back_populates="enrollments")
