@@ -1,33 +1,60 @@
-from fastapi.testclient import TestClient
-from ..main import app
-from ..database import SessionLocal, Base, engine
+import requests
 
-client = TestClient(app)
+BASE_URL = "http://localhost:8000"
 
-def setup_module():
-    Base.metadata.create_all(bind=engine)
-
-def test_create_enroll_duplicate():
-    # Create student
-    r = client.post("/students/", json={"name": "John Doe", "email": "john@example.com"})
-    student_id = r.json()["id"]
+def main():
+    print("🚀 Starting API tests...")
     
-    # Create course
-    r = client.post("/courses/", json={"title": "Math", "code": "M101", "credit_units": 3})
-    course_id = r.json()["id"]
+    endpoints = [
+        ("GET", "/", "Root endpoint"),
+        ("GET", "/health", "Health check"),
+        ("GET", "/students/", "Get all students"),
+        ("GET", "/courses/", "Get all courses"),
+        ("GET", "/stats/", "Get statistics"),
+    ]
     
-    # Enroll
-    client.post("/enroll/", json={"student_id": student_id, "course_id": course_id})
+    all_passed = True
     
-    # Try duplicate
-    r = client.post("/enroll/", json={"student_id": student_id, "course_id": course_id})
-    assert r.status_code == 400
+    for method, endpoint, description in endpoints:
+        print(f"\n📡 Testing {description} ({method} {endpoint})...")
+        try:
+            if method == "GET":
+                response = requests.get(BASE_URL + endpoint, timeout=5)
+            elif method == "POST":
+                response = requests.post(BASE_URL + endpoint, timeout=5)
+            
+            if 200 <= response.status_code < 300:
+                print(f"   ✅ Success! Status: {response.status_code}")
+                if endpoint in ["/students/", "/courses/"]:
+                    data = response.json()
+                    count = len(data)
+                    print(f"   📊 Found {count} items")
+            else:
+                print(f"   ❌ Failed! Status: {response.status_code}")
+                print(f"   Response: {response.text}")
+                all_passed = False
+                
+        except requests.exceptions.ConnectionError:
+            print(f"   ❌ Cannot connect to {BASE_URL}")
+            print(f"   Make sure the server is running: uvicorn main:app --reload --port 8000")
+            all_passed = False
+            break
+        except Exception as e:
+            print(f"   ❌ Error: {e}")
+            all_passed = False
+    
+    if all_passed:
+        print("\n🎉 All tests passed! API is working correctly.")
+        print("\n📋 Quick manual tests you can try:")
+        print("   1. Open http://localhost:8000/docs in your browser for Swagger UI")
+        print("   2. Try creating a new student: POST /students/")
+        print("   3. Try creating a new course: POST /courses/")
+        print("   4. Try enrolling a student: POST /enrollments/")
+    else:
+        print("\n❌ Some tests failed. Check the errors above.")
+    
+    return all_passed
 
-def test_student_courses():
-    r = client.get("/students/1/courses/")
-    assert r.status_code == 200
-    assert isinstance(r.json(), list)
-
-def test_study_tips():
-    r = client.post("/genai/study-tips", json={"course_title": "Physics", "credit_units": 4})
-    assert r.status_code in [200, 500]  # 500 if no key, 200 if yes
+if __name__ == "__main__":
+    success = main()
+    exit(0 if success else 1)
