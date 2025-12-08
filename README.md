@@ -100,7 +100,7 @@ GROQ_API_KEY=your_groq_api_key_here
 4. Run the backend:
 
 ```bash
-uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
+uvicorn main:app --reload --port 8000
 ```
 
 > The database (`enrollment.db`) will be created automatically on first run.
@@ -125,7 +125,7 @@ npm install
 npm run dev
 ```
 
-* The frontend will run at `http://localhost:3000`
+* The frontend will run at `http://localhost:8082`
 * Axios calls will go to `http://localhost:8000`
 
 ### 4. Using Groq GenAI-powered study tips
